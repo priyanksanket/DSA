@@ -2,6 +2,7 @@ class Solution {
     int [] dp;
      int fun(int n){
        if(n<=1) return n;
+       if(dp[n]!=0) return dp[n];
         return dp[n]= fun(n-1)+fun(n-2);
     }
 
