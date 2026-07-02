@@ -11,14 +11,14 @@ class Solution {
         int ans = high;
         while(low<=high){
             int mid = low + (high-low)/2;
-            int count = 0;
+            long count = 0;
             for(int x: piles){
-                count += Math.ceil((x+mid-1)/mid);
+                count += (long)((x+mid-1)/mid);
             }
             if(count > h){
                 low = mid +1;
             }else{
-                ans = mid;
+                ans = (int) mid;
                 high = mid-1;
             }
         }
