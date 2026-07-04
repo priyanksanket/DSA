@@ -12,7 +12,7 @@ class Solution {
             int mid = low + (high-low)/2;
             long sum =0;
             for(int x: nums){
-                sum+= (long) ((x+mid-1)/mid);
+                sum+=  ((x+mid-1)/mid);
             }
             if(sum> t){
                 low = mid +1;
