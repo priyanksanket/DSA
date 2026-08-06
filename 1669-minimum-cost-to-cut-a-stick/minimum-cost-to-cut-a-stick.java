@@ -1,14 +1,14 @@
 class Solution {
-    int fun(int i, int j, int[]nums, int [][]dp){
-        if(i>j) return 0;
-        if(dp[i][j]!= 0) return dp[i][j];
-        int min = (int)1e9;
-        for(int k = i;k<=j;k++){
-            int t = (nums[j+1]-nums[i-1]) + fun(i,k-1,nums, dp)+fun(k+1,j,nums,dp);
-            min = Math.min(min, t);
-        }
-        return dp[i][j]= min;
-    }
+    // int fun(int i, int j, int[]nums, int [][]dp){
+    //     if(i>j) return 0;
+    //     if(dp[i][j]!= 0) return dp[i][j];
+    //     int min = (int)1e9;
+    //     for(int k = i;k<=j;k++){
+    //         int t = (nums[j+1]-nums[i-1]) + fun(i,k-1,nums, dp)+fun(k+1,j,nums,dp);
+    //         min = Math.min(min, t);
+    //     }
+    //     return dp[i][j]= min;
+    // }
     public int minCost(int n, int[] cuts) {
         int x = cuts.length;
         int[] nums = new int[x+2];
@@ -18,8 +18,21 @@ class Solution {
         }
 
         Arrays.sort(nums);
-        int[][] dp = new int [x+1][x+1];
-        return fun(1,x,nums,dp);
+        int[][] dp = new int [x+2][x+2];
+
+        for(int i= x;i>0;i--){
+            for(int j = 1;j<=x;j++){
+                if(i>j) continue;
+                int min = (int)1e9;
+                for(int k = i;k<=j;k++){
+                    int t = (nums[j+1]-nums[i-1]) + dp[i][k-1] + dp[k+1][j] ;
+                    min = Math.min(min, t);
+                }
+                dp[i][j]= min;
+            }
+        }
+        return dp[1][x];
+        // return fun(1,x,nums,dp);
         
     }
 }
