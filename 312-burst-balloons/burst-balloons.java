@@ -17,7 +17,7 @@ class Solution {
         for(int i= 1;i<n-1;i++){
             arr[i]= nums[i-1];
         }
-        int [][] dp = new int[n][n];
+        int [][] dp = new int[n-1][n-1];
         for(int []x: dp){
             Arrays.fill(x,-1);
         }
